@@ -1,0 +1,151 @@
+Coverage Report by DU with details
+
+=================================================================================
+=== Design Unit: work.counter
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        10        10         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for Design Unit work.counter
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File count.v
+------------------------------------IF Branch------------------------------------
+    21                                     99408     Count coming in to IF
+    21              1                      79389         if (!rst_n)
+    23              1                       5923         else if (!load_n)
+    25              1                       9880         else if (ce)
+                                            4216     All False Count
+Branch totals: 4 hits of 4 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    26                                      9880     Count coming in to IF
+    26              1                       4911             if (up_down)
+    28              1                       4969             else 
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    32                                     27547     Count coming in to IF
+    32              1                       4202     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+    32              2                      23345     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    33                                     27523     Count coming in to IF
+    33              1                      13263     assign zero = (count_out == 0)? 1:0;
+    33              2                      14260     assign zero = (count_out == 0)? 1:0;
+Branch totals: 2 hits of 2 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         2         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for Design Unit work.counter --
+
+  File count.v
+----------------Focused Condition View-------------------
+Line       32 Item    1  (count_out == {5{{1}}})
+Condition totals: 1 of 1 input term covered = 100.00%
+
+               Input Term   Covered  Reason for no coverage   Hint
+              -----------  --------  -----------------------  --------------
+  (count_out == {5{{1}}})         Y
+
+     Rows:       Hits  FEC Target                 Non-masking condition(s)      
+ ---------  ---------  --------------------       -------------------------     
+  Row   1:          1  (count_out == {5{{1}}})_0  -                             
+  Row   2:          1  (count_out == {5{{1}}})_1  -                             
+
+----------------Focused Condition View-------------------
+Line       33 Item    1  (count_out == 0)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+        Input Term   Covered  Reason for no coverage   Hint
+       -----------  --------  -----------------------  --------------
+  (count_out == 0)         Y
+
+     Rows:       Hits  FEC Target            Non-masking condition(s)      
+ ---------  ---------  --------------------  -------------------------     
+  Row   1:          1  (count_out == 0)_0    -                             
+  Row   2:          1  (count_out == 0)_1    -                             
+
+
+Statement Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Statements                       7         7         0   100.00%
+
+================================Statement Details================================
+
+Statement Coverage for Design Unit work.counter --
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File count.v
+    8                                                module counter (clk ,rst_n, load_n, up_down, ce, data_load, count_out, max_count, zero);
+    9                                                parameter WIDTH = 5;
+    10                                               input clk;
+    11                                               input rst_n;
+    12                                               input load_n;
+    13                                               input up_down;
+    14                                               input ce;
+    15                                               input [WIDTH-1:0] data_load;
+    16                                               output reg [WIDTH-1:0] count_out;
+    17                                               output max_count;
+    18                                               output zero;
+    19                                               
+    20              1                      99408     always @(posedge clk) begin
+    21                                                   if (!rst_n)
+    22              1                      79389             count_out <= 0;
+    23                                                   else if (!load_n)
+    24              1                       5923             count_out <= data_load;
+    25                                                   else if (ce)
+    26                                                       if (up_down)
+    27              1                       4911                 count_out <= count_out + 1;
+    28                                                       else 
+    29              1                       4969                 count_out <= count_out - 1;
+    30                                               end
+    31                                               
+    32              1                      28507     assign max_count = (count_out == {WIDTH{1'b1}})? 1:0;
+    33              1                      28507     assign zero = (count_out == 0)? 1:0;
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         34        32         2    94.11%
+
+================================Toggle Details================================
+
+Toggle Coverage for Design Unit work.counter
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                                ce           1           1      100.00 
+                                               clk           1           1      100.00 
+                                    count_out[0-4]           1           1      100.00 
+                                    data_load[0-3]           1           1      100.00 
+                                      data_load[4]           0           0        0.00 
+                                            load_n           1           1      100.00 
+                                         max_count           1           1      100.00 
+                                             rst_n           1           1      100.00 
+                                           up_down           1           1      100.00 
+                                              zero           1           1      100.00 
+
+Total Node Count     =         17 
+Toggled Node Count   =         16 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      94.11% (32 of 34 bins)
+
+
+Total Coverage By Design Unit (filtered view): 98.52%
+
